@@ -117,10 +117,11 @@
 
 /* 🔘 Tarjeta visual del carrusel (imagen + info) */
 .carousel-item .row {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
+    backdrop-filter: blur(4px); /* efecto de vidrio esmerilado */
     border-radius: 12px;
     padding: 15px;
-    border: 1px solid #f1b6ce; /* Rosa pastel muy suave */
+    border: 1px solid #f1b6ce; /* Rosa pastel suave */
     box-shadow: 0 4px 12px rgba(0,0,0,0.10);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -170,4 +171,39 @@
     .carousel-control-next {
         right: 30%;
     }
+}
+
+/* 🌈 Fondo degradado pastel para toda la página */
+body {
+    background: linear-gradient(
+        135deg,
+        #ffd6e8,  /* rosa pastel */
+        #d6e8ff,  /* azul pastel */
+        #d6ffe8,  /* verde pastel */
+        #f0d6ff   /* lila pastel */
+    );
+    background-size: 300% 300%;
+    animation: pastelFlow 12s ease infinite;
+    padding-top: 180px; /* separación del navbar */
+}
+
+/* 🌈 Animación suave del degradado */
+@keyframes pastelFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🌈 Navbar pastel con transparencia tipo glass */
+.navbar {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 200, 230, 0.55), /* Rosa pastel */
+        rgba(230, 200, 255, 0.55), /* Lila pastel */
+        rgba(255, 255, 255, 0.45)  /* Blanco translúcido */
+    );
+    backdrop-filter: blur(10px); /* Difuminado elegante */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(255, 130, 200, 0.15);
 }
