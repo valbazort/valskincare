@@ -204,19 +204,13 @@
 
 /* 🌈 Fondo con imagen repetida */
 body {
-    padding-top: 180px;
+    padding-top: 50px;
 
     /* Imagen repetida en mosaico */
     background-image: url("img/fondo.png");
     background-repeat: repeat;
     background-size: auto;
     /* Se respeta el tamaño real de la imagen */
-
-    /* Degradado animado superpuesto */
-    background-color: rgba(255, 255, 255, 0.4);
-    background-blend-mode: soft-light;
-
-    animation: pastelFlow 12s ease infinite;
 }
 
 
@@ -277,5 +271,4 @@ body {
         width: 70%;
         max-width: 180px;
     }
-
 }
