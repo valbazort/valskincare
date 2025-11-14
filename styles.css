@@ -256,7 +256,7 @@ body {
 .logo-navbar {
     width: 70%;
     /* Ocupa el 70% del ancho del navbar */
-    max-width: 350px;
+    max-width: 150px;
     /* Límite para pantallas grandes */
     height: auto;
     /* Mantiene proporción */
