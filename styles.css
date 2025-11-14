@@ -51,19 +51,20 @@ body {
     }
 }
 
-/* Celulares medianos */
+/* Celulares */
 @media (max-width: 576px) {
     body {
-        padding-top: 100px;
+        padding-top: 90px; /* menos espacio */
     }
 }
 
-/* Celulares pequeños */
+/* Celulares muy pequeños */
 @media (max-width: 420px) {
     body {
-        padding-top: 90px;
+        padding-top: 80px;
     }
 }
+
 
 .titulo {
     text-align: center;
