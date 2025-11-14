@@ -136,3 +136,38 @@
     border-radius: 10px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
+
+/* Controles del carrusel fuera de la imagen */
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    top: 100%;
+    bottom: auto;
+    transform: translateY(10px); /* separarlas un poquito hacia abajo */
+}
+
+/* Alinear flechas horizontalmente (izquierda y derecha) */
+.carousel-control-prev {
+    left: 40%;
+}
+
+.carousel-control-next {
+    right: 40%;
+}
+
+/* Fondo circular suave para las flechas */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+
+/* En pantallas pequeñas, acercar flechas al centro */
+@media (max-width: 576px) {
+    .carousel-control-prev {
+        left: 30%;
+    }
+    .carousel-control-next {
+        right: 30%;
+    }
+}
