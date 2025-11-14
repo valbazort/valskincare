@@ -109,3 +109,30 @@
         height: 250px;
     }
 }
+
+.precio {
+    color: #ff4b8b;
+    font-size: 18px;
+}
+
+/* 🔘 Tarjeta visual del carrusel (imagen + info) */
+.carousel-item .row {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #f1b6ce; /* Rosa pastel muy suave */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto cuando el slide aparece */
+.carousel-item .row:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Pequeña sombra interior a la imagen */
+.carousel-item img {
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
