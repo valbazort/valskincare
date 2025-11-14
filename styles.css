@@ -44,7 +44,7 @@
     padding: 15px;
     border-radius: 12px;
     border: 1px solid #eee;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
 
@@ -82,7 +82,7 @@
 }
 
 /* RESPONSIVIDAD EXTRA */
-@media (max-width: 480px){
+@media (max-width: 480px) {
     .logo {
         height: 55px;
     }
@@ -117,45 +117,52 @@
 
 /* 🔘 Tarjeta visual del carrusel (imagen + info) */
 .carousel-item .row {
-    background: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
-    backdrop-filter: blur(4px); /* efecto de vidrio esmerilado */
+    background: rgba(255, 255, 255, 0.85);
+    /* Fondo blanco semitransparente */
+    backdrop-filter: blur(4px);
+    /* efecto de vidrio esmerilado */
     border-radius: 12px;
     padding: 15px;
-    border: 1px solid #f1b6ce; /* Rosa pastel suave */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    border: 1px solid #f1b6ce;
+    /* Rosa pastel suave */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* 🌸 Carrusel 1 – Rosa pastel */
 #c1 .carousel-item .row {
-    background: rgba(238, 61, 167, 0.677); /* Rosa pastel con transparencia */
+    background: rgba(238, 61, 167, 0.677);
+    /* Rosa pastel con transparencia */
 }
 
 /* 💙 Carrusel 2 – Azul pastel */
 #c2 .carousel-item .row {
-    background: rgba(61, 114, 238, 0.677); /* Azul pastel con transparencia */
+    background: rgba(61, 114, 238, 0.677);
+    /* Azul pastel con transparencia */
 }
 
 /* 💜 Carrusel 3 – Lila pastel */
 #c3 .carousel-item .row {
-    background: rgba(221, 160, 221, 0.677); /* Lila pastel con transparencia */
+    background: rgba(221, 160, 221, 0.677);
+    /* Lila pastel con transparencia */
 }
 
 /* 💚 Carrusel 4 – Verde pastel */
 #c4 .carousel-item .row {
-    background: rgba(108, 254, 108, 0.677); /* Verde pastel con transparencia */
+    background: rgba(108, 254, 108, 0.677);
+    /* Verde pastel con transparencia */
 }
 
 /* Efecto cuando el slide aparece */
 .carousel-item .row:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 /* Pequeña sombra interior a la imagen */
 .carousel-item img {
     border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Controles del carrusel fuera de la imagen */
@@ -164,7 +171,8 @@
     width: auto;
     top: 100%;
     bottom: auto;
-    transform: translateY(10px); /* separarlas un poquito hacia abajo */
+    transform: translateY(10px);
+    /* separarlas un poquito hacia abajo */
 }
 
 /* Alinear flechas horizontalmente (izquierda y derecha) */
@@ -188,41 +196,85 @@
     .carousel-control-prev {
         left: 30%;
     }
+
     .carousel-control-next {
         right: 30%;
     }
 }
 
-/* 🌈 Fondo con imagen repetida + degradado suave */
+/* 🌈 Fondo con imagen repetida */
 body {
     padding-top: 180px;
 
-    /* Imagen de fondo repetida */
+    /* Imagen repetida en mosaico */
     background-image: url("img/fondo.png");
-    background-repeat: repeat;         /* Si la imagen es chica, se repite */
-    background-size: auto, 300% 300%;  /* Imagen en tamaño real, degradado expandido */
-    background-blend-mode: soft-light; /* Mezcla bonito pastel */
+    background-repeat: repeat;
+    background-size: auto;
+    /* Se respeta el tamaño real de la imagen */
+
+    /* Degradado animado superpuesto */
+    background-color: rgba(255, 255, 255, 0.4);
+    background-blend-mode: soft-light;
+
     animation: pastelFlow 12s ease infinite;
 }
 
 
 /* 🌈 Animación suave del degradado */
 @keyframes pastelFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* 🌈 Navbar pastel con transparencia tipo glass */
 .navbar {
-    background: linear-gradient(
-        135deg,
-        rgba(255, 200, 230, 0.55), /* Rosa pastel */
-        rgba(230, 200, 255, 0.55), /* Lila pastel */
-        rgba(255, 255, 255, 0.45)  /* Blanco translúcido */
-    );
-    backdrop-filter: blur(10px); /* Difuminado elegante */
+    background: linear-gradient(135deg,
+            rgba(255, 200, 230, 0.55),
+            /* Rosa pastel */
+            rgba(230, 200, 255, 0.55),
+            /* Lila pastel */
+            rgba(255, 255, 255, 0.45)
+            /* Blanco translúcido */
+        );
+    backdrop-filter: blur(10px);
+    /* Difuminado elegante */
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 4px 10px rgba(255, 130, 200, 0.15);
+}
+
+/* 📌 LOGO RESPONSIVO EN NAVBAR */
+.logo-navbar {
+    width: 70%;
+    /* Ocupa el 70% del ancho del navbar */
+    max-width: 350px;
+    /* Límite para pantallas grandes */
+    height: auto;
+    /* Mantiene proporción */
+    display: block;
+    margin: 0 auto;
+    /* Centrado */
+}
+
+@media (max-width: 768px) {
+    .logo-navbar {
+        width: 60%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-navbar {
+        width: 70%;
+        max-width: 180px;
+    }
 }
