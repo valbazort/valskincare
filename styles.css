@@ -193,19 +193,18 @@
     }
 }
 
-/* 🌈 Fondo degradado pastel para toda la página */
+/* 🌈 Fondo con imagen repetida + degradado suave */
 body {
-    background: linear-gradient(
-        135deg,
-        #ffd6e8,  /* rosa pastel */
-        #d6e8ff,  /* azul pastel */
-        #d6ffe8,  /* verde pastel */
-        #f0d6ff   /* lila pastel */
-    );
-    background-size: 300% 300%;
+    padding-top: 180px;
+
+    /* Imagen de fondo repetida */
+    background-image: url("img/fondo.png");
+    background-repeat: repeat;         /* Si la imagen es chica, se repite */
+    background-size: auto, 300% 300%;  /* Imagen en tamaño real, degradado expandido */
+    background-blend-mode: soft-light; /* Mezcla bonito pastel */
     animation: pastelFlow 12s ease infinite;
-    padding-top: 180px; /* separación del navbar */
 }
+
 
 /* 🌈 Animación suave del degradado */
 @keyframes pastelFlow {
