@@ -236,16 +236,7 @@ body {
 }
 
 /* ⭐ FOOTER ⭐ */
-.footer {
-    background: linear-gradient(135deg,
-            rgba(255, 200, 230, 0.55),
-            rgba(230, 200, 255, 0.55),
-            rgba(200, 255, 230, 0.50));
-    padding: 30px 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
+
 
 .footer-title {
     color: #ff5c93;
