@@ -36,12 +36,14 @@
     }
 }
 
-/* 💡 Ajuste automático del espacio según el tamaño del navbar */
 body {
-    padding-top: 140px; /* valor general */
-    background-image: url("img/fondo.png");
-    background-repeat: repeat;
-    background-size: auto; /* imagen en mosaico */
+    padding-top: 140px;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 210, 230, 0.6), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(210, 220, 255, 0.6), transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(200, 255, 230, 0.6), transparent 60%),
+        linear-gradient(135deg, #ffe4f0, #e8e2ff, #e2f7ff, #e8ffe5);
+    background-size: cover;
 }
 
 /* Tablets */
@@ -212,4 +214,5 @@ body {
 .text-muted li {
     margin-bottom: 4px;
     font-size: 14px;
+
 }
