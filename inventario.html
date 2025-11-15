@@ -20,6 +20,11 @@
             border: 1px solid #ddd;
             margin-bottom: 20px;
         }
+
+        .btn-guardar {
+            margin-top: 20px;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -51,96 +56,102 @@
     </div>
 
     <div class="container">
+
         <table class="table table-bordered table-striped" id="tablaInventario">
             <thead class="table-dark">
                 <tr>
                     <th>Producto</th>
                     <th>Cantidad</th>
-                    <th>Actualizar</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
+
+        <!-- BOTÓN GUARDAR TODO -->
+        <button class="btn btn-success btn-guardar" onclick="guardarTodo()">
+            Guardar inventario completo
+        </button>
     </div>
+
 
     <script>
         let inventarioOriginal = [];
         let inventarioActual = [];
 
+        //---------------------------------------------
+        // CARGAR INVENTARIO DESDE localStorage
+        //---------------------------------------------
         async function cargarInventario() {
-
-            //---------------------------------------------
-            // 1. Cargar inventario.json
-            //---------------------------------------------
             const res = await fetch("inventario.json");
             const data = await res.json();
 
-            // Si NO hay localStorage, se inicializa
             if (!localStorage.getItem("invValSkin")) {
                 localStorage.setItem("invValSkin", JSON.stringify(data));
             }
 
-            // Datos provenientes de localStorage
             inventarioOriginal = JSON.parse(localStorage.getItem("invValSkin"));
-
-            // Copia para ordenar
             inventarioActual = [...inventarioOriginal];
 
             mostrarTabla();
         }
 
-        //-------------------------------------------------
-        // Mostrar los productos en la tabla
-        //-------------------------------------------------
+        //---------------------------------------------
+        // MOSTRAR TABLA SIN innerHTML (más seguro)
+        //---------------------------------------------
         function mostrarTabla() {
             const tbody = document.querySelector("#tablaInventario tbody");
             tbody.innerHTML = "";
 
             inventarioActual.forEach(prod => {
-                tbody.innerHTML += `
-                <tr>
-                    <td>${prod.nombre}</td>
-                    <td>
-                        <input type="number" class="form-control"
-                            value="${prod.cantidad}" min="0" id="p${prod.id}">
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" onclick="guardar(${prod.id})">Guardar</button>
-                    </td>
-                </tr>
-                `;
+                const tr = document.createElement("tr");
+
+                // nombre
+                const tdNombre = document.createElement("td");
+                tdNombre.textContent = prod.nombre;
+
+                // cantidad
+                const tdCantidad = document.createElement("td");
+                const input = document.createElement("input");
+                input.type = "number";
+                input.className = "form-control cantidad-input";
+                input.min = 0;
+                input.value = prod.cantidad;
+                input.dataset.id = prod.id;
+
+                tdCantidad.appendChild(input);
+
+                tr.appendChild(tdNombre);
+                tr.appendChild(tdCantidad);
+                tbody.appendChild(tr);
             });
         }
 
-        //-------------------------------------------------
-        // Guardar cambios en localStorage
-        //-------------------------------------------------
-        function guardar(id) {
+        //---------------------------------------------
+        // GUARDAR TODO A LA VEZ
+        //---------------------------------------------
+        function guardarTodo() {
+            const inputs = document.querySelectorAll(".cantidad-input");
 
-            const nuevaCantidad = Number(document.querySelector(`#p${id}`).value);
+            inputs.forEach(input => {
+                const id = Number(input.dataset.id);
+                const nuevaCantidad = Number(input.value);
 
-            // Evitar negativos
-            if (nuevaCantidad < 0) return;
+                const idx = inventarioOriginal.findIndex(p => p.id === id);
+                inventarioOriginal[idx].cantidad = nuevaCantidad;
+            });
 
-            // Buscar producto
-            const idx = inventarioOriginal.findIndex(p => p.id === id);
-
-            inventarioOriginal[idx].cantidad = nuevaCantidad;
-
-            // Guardar en localStorage
             localStorage.setItem("invValSkin", JSON.stringify(inventarioOriginal));
 
-            alert("Inventario actualizado.");
+            alert("Inventario actualizado correctamente.");
         }
 
-        //-------------------------------------------------
-        // Aplicar filtros de ordenamiento
-        //-------------------------------------------------
+        //---------------------------------------------
+        // APLICAR FILTROS DE ORDEN
+        //---------------------------------------------
         function aplicarFiltros() {
             const ordenNombre = document.getElementById("ordenNombre").value;
             const ordenCantidad = document.getElementById("ordenCantidad").value;
 
-            // Restaurar orden original
             inventarioActual = [...inventarioOriginal];
 
             // Orden por nombre
