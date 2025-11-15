@@ -698,9 +698,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        async function actualizarEstados() {
+        async function obtenerInventario() {
+
+            // SI existe inventario en localStorage → usar ese
+            let almacenado = localStorage.getItem("invValSkin");
+
+            if (almacenado) {
+                return JSON.parse(almacenado);
+            }
+
+            // Si NO existe en localStorage, cargar inventario.json una única vez
             const res = await fetch("inventario.json");
-            const inventario = await res.json();
+            const data = await res.json();
+
+            // Guardarlo en localStorage para futuras lecturas
+            localStorage.setItem("invValSkin", JSON.stringify(data));
+
+            return data;
+        }
+
+        async function actualizarEstados() {
+            const inventario = await obtenerInventario();
 
             document.querySelectorAll(".estado-producto").forEach(el => {
                 const id = Number(el.dataset.id);
@@ -722,7 +740,7 @@
 
         actualizarEstados();
     </script>
-
 </body>
+
 
 </html>
