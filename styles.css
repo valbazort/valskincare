@@ -38,15 +38,12 @@
 
 body {
     padding-top: 140px;
-    background:
-        linear-gradient(135deg, rgba(255, 180, 220, 0.35), rgba(190, 170, 255, 0.35)),
-        repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,0.4) 0px,
-            rgba(255,255,255,0.4) 2px,
-            rgba(240,240,240,0.4) 4px
-        );
-    background-blend-mode: soft-light;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 210, 230, 0.6), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(210, 220, 255, 0.6), transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(200, 255, 230, 0.6), transparent 60%),
+        linear-gradient(135deg, #ffe4f0, #e8e2ff, #e2f7ff, #e8ffe5);
+    background-size: cover;
 }
 
 /* Tablets */
@@ -217,6 +214,4 @@ body {
 .text-muted li {
     margin-bottom: 4px;
     font-size: 14px;
-
 }
-
