@@ -231,8 +231,3 @@ body {
 .estado-agotado {
     color: #d9534f; /* rojo */
 }
-
-.sin-bullet {
-    list-style-type: none;
-    line-height: 12px; /* controla el espacio */
-}
