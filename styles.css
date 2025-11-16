@@ -244,3 +244,11 @@ body {
     color: #555;
     margin-top: 20px;
 }
+
+/* Márgenes laterales solo en computadoras */
+@media (min-width: 992px) {
+    .carousel-box {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+}
