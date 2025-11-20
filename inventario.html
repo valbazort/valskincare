@@ -82,14 +82,18 @@
         // CARGAR INVENTARIO DESDE localStorage
         //---------------------------------------------
         async function cargarInventario() {
+
+            // Cargar inventario.json SIEMPRE
             const res = await fetch("inventario.json");
             const data = await res.json();
 
-            if (!localStorage.getItem("invValSkin")) {
-                localStorage.setItem("invValSkin", JSON.stringify(data));
-            }
+            // Reemplazar inventario original
+            inventarioOriginal = data;
 
-            inventarioOriginal = JSON.parse(localStorage.getItem("invValSkin"));
+            // Guardar actualización en localStorage
+            localStorage.setItem("invValSkin", JSON.stringify(inventarioOriginal));
+
+            // Copia para mostrar
             inventarioActual = [...inventarioOriginal];
 
             mostrarTabla();
