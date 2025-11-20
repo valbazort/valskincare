@@ -1,6 +1,6 @@
 [
     { "id": 1, "nombre": "Neoretin (3 ml)", "cantidad": 1 },
-    { "id": 2, "nombre": "Woman Isdin 6 ml", "cantidad": 0 },
+    { "id": 2, "nombre": "Woman Isdin 6 ml", "cantidad": 2 },
     { "id": 3, "nombre": "La Roche - Posay 3 ml", "cantidad": 0 },
     { "id": 4, "nombre": "Vichy 3 ml", "cantidad": 0 },
     { "id": 5, "nombre": "A - Derma 5 ml", "cantidad": 0 },
@@ -46,3 +46,4 @@
     { "id": 42, "nombre": "Bioderma 8 ml Gel limpiador acné", "cantidad": 0 },
     { "id": 43, "nombre": "Hyaluboost", "cantidad":0}
 ]
+
