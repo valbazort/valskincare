@@ -83,17 +83,21 @@
         //---------------------------------------------
         async function cargarInventario() {
 
-            // Cargar inventario.json SIEMPRE
             const res = await fetch("inventario.json");
             const data = await res.json();
 
-            // Reemplazar inventario original
-            inventarioOriginal = data;
+            let guardado = JSON.parse(localStorage.getItem("invValSkin") || "[]");
 
-            // Guardar actualización en localStorage
-            localStorage.setItem("invValSkin", JSON.stringify(inventarioOriginal));
+            // Si el JSON tiene nuevos productos → agregarlos sin borrar los existentes
+            if (data.length > guardado.length) {
+                guardado = [
+                    ...guardado,
+                    ...data.slice(guardado.length)
+                ];
+                localStorage.setItem("invValSkin", JSON.stringify(guardado));
+            }
 
-            // Copia para mostrar
+            inventarioOriginal = guardado;
             inventarioActual = [...inventarioOriginal];
 
             mostrarTabla();
