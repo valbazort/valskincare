@@ -67,9 +67,9 @@
             <tbody></tbody>
         </table>
 
-        <!-- BOTÓN GUARDAR TODO -->
-        <button class="btn btn-success btn-guardar" onclick="guardarTodo()">
-            Guardar inventario completo
+        <!-- BOTÓN (solo aviso, no guarda) -->
+        <button class="btn btn-secondary btn-guardar" onclick="alertaGuardar()">
+            *GitHub no permite guardar desde aquí
         </button>
     </div>
 
@@ -79,32 +79,24 @@
         let inventarioActual = [];
 
         //---------------------------------------------
-        // CARGAR INVENTARIO DESDE localStorage
+        // CARGAR INVENTARIO DESDE JSON SIN CACHE
+        //---------------------------------------------
+        async function obtenerInventario() {
+            const res = await fetch("inventario.json?v=" + Date.now());
+            return await res.json();
+        }
+
+        //---------------------------------------------
+        // CARGAR Y MOSTRAR INVENTARIO
         //---------------------------------------------
         async function cargarInventario() {
-
-            const res = await fetch("inventario.json");
-            const data = await res.json();
-
-            let guardado = JSON.parse(localStorage.getItem("invValSkin") || "[]");
-
-            // Si el JSON tiene nuevos productos → agregarlos sin borrar los existentes
-            if (data.length > guardado.length) {
-                guardado = [
-                    ...guardado,
-                    ...data.slice(guardado.length)
-                ];
-                localStorage.setItem("invValSkin", JSON.stringify(guardado));
-            }
-
-            inventarioOriginal = guardado;
+            inventarioOriginal = await obtenerInventario();
             inventarioActual = [...inventarioOriginal];
-
             mostrarTabla();
         }
 
         //---------------------------------------------
-        // MOSTRAR TABLA SIN innerHTML (más seguro)
+        // MOSTRAR TABLA (crear elementos)
         //---------------------------------------------
         function mostrarTabla() {
             const tbody = document.querySelector("#tablaInventario tbody");
@@ -113,11 +105,9 @@
             inventarioActual.forEach(prod => {
                 const tr = document.createElement("tr");
 
-                // nombre
                 const tdNombre = document.createElement("td");
                 tdNombre.textContent = prod.nombre;
 
-                // cantidad
                 const tdCantidad = document.createElement("td");
                 const input = document.createElement("input");
                 input.type = "number";
@@ -135,26 +125,14 @@
         }
 
         //---------------------------------------------
-        // GUARDAR TODO A LA VEZ
+        // AVISO DE QUE NO SE PUEDE GUARDAR
         //---------------------------------------------
-        function guardarTodo() {
-            const inputs = document.querySelectorAll(".cantidad-input");
-
-            inputs.forEach(input => {
-                const id = Number(input.dataset.id);
-                const nuevaCantidad = Number(input.value);
-
-                const idx = inventarioOriginal.findIndex(p => p.id === id);
-                inventarioOriginal[idx].cantidad = nuevaCantidad;
-            });
-
-            localStorage.setItem("invValSkin", JSON.stringify(inventarioOriginal));
-
-            alert("Inventario actualizado correctamente.");
+        function alertaGuardar() {
+            alert("GitHub Pages NO permite guardar.\n\nPara modificar cantidades edita inventario.json directamente en GitHub.");
         }
 
         //---------------------------------------------
-        // APLICAR FILTROS DE ORDEN
+        // APLICAR FILTROS
         //---------------------------------------------
         function aplicarFiltros() {
             const ordenNombre = document.getElementById("ordenNombre").value;
@@ -162,14 +140,12 @@
 
             inventarioActual = [...inventarioOriginal];
 
-            // Orden por nombre
             if (ordenNombre === "asc") {
                 inventarioActual.sort((a, b) => a.nombre.localeCompare(b.nombre));
             } else if (ordenNombre === "desc") {
                 inventarioActual.sort((a, b) => b.nombre.localeCompare(a.nombre));
             }
 
-            // Orden por cantidad
             if (ordenCantidad === "asc") {
                 inventarioActual.sort((a, b) => a.cantidad - b.cantidad);
             } else if (ordenCantidad === "desc") {
