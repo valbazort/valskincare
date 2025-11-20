@@ -353,7 +353,8 @@
                             <h4>Anthelios Morado 3ml</h4>
                             <ul class="text-muted">
                                 <li>Alta Resistencia: Es ultra resistente al agua, al sudor y a la arena</li>
-                                <li>Pieles Sensibles: Es ideal para pieles sensibles y, al ser sin perfume, minimiza el riesgo de reacciones alérgicas</li>
+                                <li>Pieles Sensibles: Es ideal para pieles sensibles y, al ser sin perfume, minimiza el
+                                    riesgo de reacciones alérgicas</li>
                                 <br>
                             </ul>
                             <p class="fw-bold precio">$55 MXN</p>
@@ -385,7 +386,7 @@
 
                     </div>
                 </div>
-                
+
                 <!-- PRODUCTO 17 -->
                 <div class="carousel-item">
                     <div class="row align-items-center p-3">
@@ -513,7 +514,8 @@
                         <div class="col-8 col-md-9">
                             <h4>Endocare Age 2ml</h4>
                             <ul class="text-muted">
-                                <li>Contiene Ácido Hialurónico (Hyaluronic Acid) para proporcionar una hidratación intensa</li>
+                                <li>Contiene Ácido Hialurónico (Hyaluronic Acid) para proporcionar una hidratación
+                                    intensa</li>
                                 <li>Rellena las líneas finas de expresión</li>
                                 <br>
                             </ul>
@@ -536,7 +538,8 @@
                         <div class="col-8 col-md-9">
                             <h4>Effaclar TOLERIANE 2 ml</h4>
                             <ul class="text-muted">
-                                <li>Su función principal es calmar y aliviar de inmediato las sensaciones de irritación, picazón, ardor y enrojecimiento en la piel sensible o alérgica</li>
+                                <li>Su función principal es calmar y aliviar de inmediato las sensaciones de irritación,
+                                    picazón, ardor y enrojecimiento en la piel sensible o alérgica</li>
                                 <br>
                                 <br>
                             </ul>
@@ -559,7 +562,8 @@
                         <div class="col-8 col-md-9">
                             <h4>Bioderma Defensive serum 4 ml</h4>
                             <ul class="text-muted">
-                                <li>Es un concentrado hidratante y calmante diseñado para reforzar las defensas naturales de la piel sensible o sensibilizada</li>
+                                <li>Es un concentrado hidratante y calmante diseñado para reforzar las defensas
+                                    naturales de la piel sensible o sensibilizada</li>
                                 <br>
                                 <br>
                             </ul>
@@ -714,7 +718,8 @@
                         <div class="col-8 col-md-9">
                             <h4>ENDOCARE dermolimpiador gel 5 ml</h4>
                             <ul class="text-muted">
-                                <li>Contiene Ácido Hialurónico (Hyaluronic Acid) para atraer y retener agua en la piel</li>
+                                <li>Contiene Ácido Hialurónico (Hyaluronic Acid) para atraer y retener agua en la piel
+                                </li>
                                 <li>Al hidratar profundamente, rellena las líneas finas y las primeras arrugas</li>
                                 <br>
                             </ul>
@@ -1047,19 +1052,9 @@
     <script>
         async function obtenerInventario() {
 
-            // SI existe inventario en localStorage → usar ese
-            let almacenado = localStorage.getItem("invValSkin");
-
-            if (almacenado) {
-                return JSON.parse(almacenado);
-            }
-
-            // Si NO existe en localStorage, cargar inventario.json una única vez
-            const res = await fetch("inventario.json");
+            // Leer inventario.json sin usar cache
+            const res = await fetch("inventario.json?v=" + Date.now());
             const data = await res.json();
-
-            // Guardarlo en localStorage para futuras lecturas
-            localStorage.setItem("invValSkin", JSON.stringify(data));
 
             return data;
         }
@@ -1067,11 +1062,13 @@
         async function actualizarEstados() {
             const inventario = await obtenerInventario();
 
+            // Seleccionar todos los elementos con estado-producto
             document.querySelectorAll(".estado-producto").forEach(el => {
-                const id = Number(el.dataset.id);
-                const producto = inventario.find(p => p.id === id);
 
-                if (!producto) return;
+                const id = Number(el.dataset.id);   // obtener el ID del HTML
+                const producto = inventario.find(p => p.id === id); // buscar en JSON
+
+                if (!producto) return; // si no existe, ignoramos
 
                 if (producto.cantidad > 0) {
                     el.innerHTML = "😊 Disponible";
